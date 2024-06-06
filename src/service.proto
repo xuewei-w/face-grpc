@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+service FaceDetectionService {
+  rpc serve(FaceDetectionRequest) returns (FaceDetectionResponse) {}
+}
+
+message FaceDetectionRequest {
+  bytes image = 1;
+}
+
+message Rect2d {
+  double x = 1;
+  double y = 2;
+  double width = 3;
+  double height = 4;
+}
+
+message Point2d {
+  double x = 1;
+  double y = 2;
+}
+
+message Landmark {
+  repeated Point2d point = 1;
+}
+
+message FaceDetectionResponse {
+  repeated Rect2d bbox = 1;
+  repeated float score = 2;
+  repeated Landmark landmark = 3;
+}
